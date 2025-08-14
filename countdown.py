@@ -2,22 +2,28 @@
 # Import the tkinter library and its font module for GUI and font control
 import tkinter as tk
 from tkinter import font
+from tkinter import messagebox
+import subprocess
 
 # Function to start the timer when the START button is clicked
 def startTimer():
     timeStr = entryWidget.get()  # Get the time input from the entry widget
+    if timeStr == "00:00:00":
+        messagebox.showinfo("Enter your Time!")
     try:
-        # Split the string (HH:MM:SS) and convert each part to integers
-        h, m, s = map(int, timeStr.split(":"))
+        if timeStr!="00:00:00":
+            # Split the string (HH:MM:SS) and convert each part to integers
+            h, m, s = map(int, timeStr.split(":"))
 
-        # Convert the entire time to total seconds
-        totalSeconds = h * 3600 + m * 60 + s
+            # Convert the entire time to total seconds
+            totalSeconds = h * 3600 + m * 60 + s
 
-        # Start the countdown with the total seconds
-        countDown(totalSeconds)
+            # Start the countdown with the total seconds
+            countDown(totalSeconds)
     except:
         # If input format is incorrect, show error message
         label.config(text="Invalid format! Use HH:MM:SS")
+
 
 # Recursive countdown function that updates the label every second
 def countDown(seconds):
@@ -36,44 +42,49 @@ def countDown(seconds):
         root.after(1000, countDown, seconds - 1)
     else:
         # When time is up, display message
-        label.config(text="Time's up!")
+        label.config(text="Time's up!", fg="red")
+        subprocess.run(["mpg123", "alarm_clock.mp3"])
 
 # Create the main application window
 root = tk.Tk()
 root.title("Countdown Timer")         # Set window title
-root.geometry("420x240")              # Set fixed window size
-root.configure(bg="lightgrey")        # Set background color of window
+root.geometry("520x340")              # Set fixed window size
+root.configure(bg="white")        # Set background color of window
 
 # Create and place the label to display the countdown time
 label = tk.Label(
     root,
     text="00:00:00",                  # Initial time
-    font=("Arial", 14),              # Font style and size
-    bg="lightgrey"                   # Match background color to window
+    font=("Arial", 20),              # Font style and size
+    bg="white"                   # Match background color to window
 )
-label.pack(fill="both", expand=True, padx=10, pady=10)  # Add padding and make label stretch
+label.pack(fill="both", expand=True, padx=5, pady=5)  # Add padding and make label stretch
 
 # Create a frame to hold the Entry and Button widgets, for better centering
-middleFrame = tk.Frame(root, bg="lightgrey")
+middleFrame = tk.Frame(root, bg="white")
 middleFrame.pack(expand=True)  # Use expand to center it vertically
 
 # Create the entry widget for the user to input countdown time
 entryWidget = tk.Entry(
     middleFrame,
-    font=("Helvetica", 14),         # Font for the entry text
+    font=("Helvetica", 20),         # Font for the entry text
     justify="center",               # Center the text inside the entry box
-    width=15                        # Width of the entry box
+    width=35                     # Width of the entry box
 )
-entryWidget.pack(pady=5)          # Add vertical padding
-entryWidget.insert(0, "00:00:01") # Set default time (1 second)
+entryWidget.pack(pady=5, ipady=20)          # Add vertical padding
+entryWidget.insert(0, "00:00:00") # Set default time (1 second)
 
 # Create the START button to trigger the countdown
 startButton = tk.Button(
     middleFrame,
-    text="START",                   # Button label
+    text="START",
+    bg="lightblue",
+    fg="black",
+    activebackground="darkblue",
+    activeforeground="red",                   # Button label
     command=startTimer             # Link the button to the startTimer function
 )
-startButton.pack(pady=5)          # Add vertical padding
+startButton.pack(pady=5, ipady=15)          # Add vertical padding
 
 # Start the Tkinter event loop (keeps the window open and responsive)
 root.mainloop()
