@@ -9,7 +9,7 @@ import subprocess
 def startTimer():
     timeStr = entryWidget.get()  # Get the time input from the entry widget
     if timeStr == "00:00:00":
-        messagebox.showinfo("Enter your Time!")
+        messagebox.showinfo("Enter Your Time!")
     try:
         if timeStr!="00:00:00":
             # Split the string (HH:MM:SS) and convert each part to integers
@@ -22,7 +22,7 @@ def startTimer():
             countDown(totalSeconds)
     except:
         # If input format is incorrect, show error message
-        label.config(text="Invalid format! Use HH:MM:SS")
+        label.config(text="Invalid Format! Use HH:MM:SS")
 
 
 # Recursive countdown function that updates the label every second
