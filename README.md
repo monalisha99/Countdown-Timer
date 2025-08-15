@@ -7,5 +7,10 @@ Are you curious about my article? You can check it out here: [Building A Simple 
 <img width="1280" height="600" alt="wr" src="https://github.com/user-attachments/assets/a108f184-a3ec-4df0-8d93-525134463066" />
 
 You can also follow me here:
-https://www.vecteezy.com/png/18930480-linkedin-logo-png-linkedin-icon-transparent-png
-https://medium.design/logos-and-brand-guidelines-f1a01a733592
+<a href="https://www.linkedin.com/in/monalisha11" target="_blank">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/c/ca/LinkedIn_logo_initials.png" alt="LinkedIn" width="50" height="50">
+</a>
+
+<a href="https://medium.com/@monalisha1" target="_blank">
+  <img src="https://miro.medium.com/v2/resize:fit:1100/format:webp/1*psYl0y9DUzZWtHzFJLIvTw.png" alt="Medium" width="50" height="50">
+</a>
